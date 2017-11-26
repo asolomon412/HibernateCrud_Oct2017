@@ -65,6 +65,38 @@ public class HomeController {
 		return new ModelAndView("welcome", "cList", customerList);
 	}
 
+	// mapping needed to send to a form to add a new product
+	@RequestMapping("/getnewprod")
+	public String newProduct() {
+		return "addprodform";
+	}
+
+	@RequestMapping("/addnewproduct")
+	public String addNewCustomer(@RequestParam("code") String code, @RequestParam("description") String desc,
+			@RequestParam("listPrice") double price, Model model) {
+
+		Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
+
+		SessionFactory sessionFact = cfg.buildSessionFactory();
+
+		Session session = sessionFact.openSession();
+
+		Transaction tx = session.beginTransaction();
+
+		ProductDto newProduct = new ProductDto();
+
+		newProduct.setCode(code);
+		newProduct.setDescription(desc);
+		newProduct.setListPrice(price);
+
+		session.save(newProduct);
+		tx.commit();
+		session.close();
+
+		model.addAttribute("newStuff", newProduct);
+		return "addprodsuccess";
+	}
+
 	@RequestMapping("/delete")
 	public ModelAndView deleteCustomer(@RequestParam("id") int id) {
 
@@ -137,34 +169,4 @@ public class HomeController {
 		return list;
 	}
 
-	@RequestMapping("/getnewprod")
-	public String newProduct() {
-		return "addprodform";
-	}
-
-	@RequestMapping("/addnewproduct")
-	public String addNewCustomer(@RequestParam("code") String code, @RequestParam("description") String desc,
-			@RequestParam("listPrice") double price, Model model) {
-
-		Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
-
-		SessionFactory sessionFact = cfg.buildSessionFactory();
-
-		Session session = sessionFact.openSession();
-
-		Transaction tx = session.beginTransaction();
-
-		ProductDto newProduct = new ProductDto();
-
-		newProduct.setCode(code);
-		newProduct.setDescription(desc);
-		newProduct.setListPrice(price);
-
-		session.save(newProduct);
-		tx.commit();
-		session.close();
-
-		model.addAttribute("newStuff", newProduct);
-		return "addprodsuccess";
-	}
 }
