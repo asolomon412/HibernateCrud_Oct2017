@@ -4,7 +4,10 @@ import java.io.Serializable;
 
 public class ProductDto implements Serializable {
 	/**
-	 * 
+	 * The serialization runtime associates with each serializable class a version
+	 * number, called a serialVersionUID, which is used during deserialization to
+	 * verify that the sender and receiver of a serialized object have loaded
+	 * classes for that object that are compatible with respect to serialization.
 	 */
 	private static final long serialVersionUID = 1L;
 	private int productID;
@@ -14,10 +17,10 @@ public class ProductDto implements Serializable {
 
 	public ProductDto() {
 
-//		productID = 0;
-//		code = "";
-//		description = "";
-//		listPrice = 0;
+		// productID = 0;
+		// code = "";
+		// description = "";
+		// listPrice = 0;
 	}
 
 	public ProductDto(int productID, String code, String description, double listPrice) {
@@ -65,6 +68,5 @@ public class ProductDto implements Serializable {
 		return "ProductDto [productID=" + productID + ", code=" + code + ", description=" + description + ", listPrice="
 				+ listPrice + "]";
 	}
-	
 
 }
