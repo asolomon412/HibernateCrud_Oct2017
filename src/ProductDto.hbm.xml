@@ -5,7 +5,7 @@
 
 <hibernate-mapping>
 	<class name="com.gc.dto.ProductDto" table="Product"
-		schema="GCBC">
+		schema="GCBC2">
 
 
 		<id name="productID">

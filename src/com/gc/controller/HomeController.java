@@ -101,7 +101,7 @@ public class HomeController {
 	public ModelAndView updateProduct(@RequestParam("id") int id, @RequestParam("code") String code,
 			@RequestParam("description") String desc, @RequestParam("listPrice") double price) {
 
-		// temp Object will store info for the object we want to delete
+		// temp Object will store info for the object we want to update
 		ProductDto temp = new ProductDto();
 		temp.setProductID(id);
 		temp.setCode(code);
