@@ -30,11 +30,26 @@ public class HomeController {
 	public ModelAndView helloWorld() {
 
 		Configuration config = new Configuration().configure("hibernate.cfg.xml");
+		/*
+		 * The SessionFactory is a factory of session and client of Connection Provider.
+		 * It holds second level cache (optional) of data
+		 */
 		SessionFactory sessionFactory = config.buildSessionFactory();
+		/*
+		 * A Session is used to get a physical connection with a database. The Session
+		 * object is lightweight and designed to be instantiated each time an
+		 * interaction is needed with the database. Persistent objects are saved and
+		 * retrieved through a Session object.
+		 * 
+		 * The session objects should not be kept open for a long time because they are
+		 * not usually thread safe and they should be created and destroyed them as
+		 * needed. The main function of the Session is to offer, create, read, and
+		 * delete operations for instances of mapped entity classes.
+		 */
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
-		Criteria crit = session.createCriteria(ProductDto.class);
-		ArrayList<ProductDto> list = (ArrayList<ProductDto>) crit.list();
+		Criteria crit = session.createCriteria(ProductDto.class); // the strikethrough indicates this is deprecated
+		ArrayList<ProductDto> list = (ArrayList<ProductDto>) crit.list(); 
 		tx.commit();
 		session.close();
 
