@@ -10,7 +10,8 @@
 <form action="addnewproduct" method="post">
     Code: <input type="text" name="code" required> <br>
     Description: <input type="text" name="description" required> <br>
-    List Price: <input type="text" name="listPrice"> <br>
+    <!--  these additional attributes for min and step allow us to take in a double variable -->
+    List Price: <input type="number" min="1" step="any" name="listPrice"> <br>
     <input type="submit" value="Add Product">
 
 </form>

@@ -65,8 +65,8 @@ public class ProductDto implements Serializable {
 
 	@Override
 	public String toString() {
-		return "ProductDto [productID=" + productID + ", code=" + code + ", description=" + description + ", listPrice="
-				+ listPrice + "]";
+		return "Primary key assigned as 0, represents us assigning null to the query: " + productID + ", code=" + code
+				+ ", description=" + description + ", listPrice=" + listPrice;
 	}
 
 }
